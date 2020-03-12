@@ -26,6 +26,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/painel','testController@painel')->name('painel');
 });*/
 
-Auth::routes();
+//Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');

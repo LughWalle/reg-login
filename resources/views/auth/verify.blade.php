@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<section class="site-section site-section-light site-section-top themed-background-dark">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -25,4 +27,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection
