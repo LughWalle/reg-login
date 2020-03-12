@@ -31,7 +31,6 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <!-- Bootstrap is included in its original form, unaltered -->
         <link rel="stylesheet" href="{{asset('app-assets/arq/css/bootstrap.min.css')}}">
 
@@ -185,11 +184,11 @@
                             </li>
                             @guest
                                 <li>
-                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a href="{{ route('login') }}" class="btn btn-primary">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li >
-                                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a href="{{ route('register') }}" class="btn btn-success">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @else

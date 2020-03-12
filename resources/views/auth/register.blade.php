@@ -16,12 +16,19 @@
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 site-block">
                 <!-- Sign Up Form -->
-                <form action="signup.html" method="post" id="form-sign-up" class="form-horizontal">
+                <form action="{{ route('register') }}" method="post" id="form-sign-up" class="form-horizontal">
+                    @csrf
+
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                <input type="text" id="register-firstname" name="register-firstname" class="form-control input-lg" placeholder="First name">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="First name" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -29,7 +36,13 @@
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
-                                <input type="email" id="register-email" name="register-email" class="form-control input-lg" placeholder="Email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -37,7 +50,13 @@
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
-                                <input type="password" id="register-password" name="register-password" class="form-control input-lg" placeholder="Password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -45,7 +64,7 @@
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
-                                <input type="password" id="register-password-verify" name="register-password-verify" class="form-control input-lg" placeholder="Verify Password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Verify Password" required autocomplete="new-password">
                             </div>
                         </div>
                     </div>
@@ -57,7 +76,8 @@
                             <a href="#modal-terms" data-toggle="modal" class="register-terms"><small>View Terms</small></a>
                         </div>
                         <div class="col-xs-6 text-right">
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Sign Up</button>
+                            <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-plus"></i> {{ __('Register') }} </button>
                         </div>
                     </div>
                 </form>
@@ -127,4 +147,7 @@
     </div>
 </div>
 <!-- END Modal Terms -->
+<!-- Load and execute javascript code used only in this page -->
+<script src="{{ asset('js/signup.js') }}"></script>
+<script>$(function(){ Signup.init(); });</script>
 @endsection
